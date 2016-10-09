@@ -1,3 +1,8 @@
-No photos yet!
+- if @photos.any?
+  - @photos.each do |photo|
+    = link_to image_tag(photo.image.url, class: 'media-object', height: '500', width: '500'), photo_path(photo)
+    %h2= photo.caption
+- else
+  No photos yet!
 
-%a(href='#') Add a photo
+=link_to 'Add a photo', new_photo_path
