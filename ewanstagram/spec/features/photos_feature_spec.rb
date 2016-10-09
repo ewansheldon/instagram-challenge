@@ -31,4 +31,16 @@ feature 'photos' do
       expect(current_path).to eq '/'
     end
   end
+
+  context 'viewing photo' do
+
+    let!(:photo){ Photo.create(caption:'example photo') }
+
+    scenario 'lets a user view a photo' do
+       visit '/photos'
+       click_link "photo#{photo.id}"
+       expect(page).to have_content 'example photo'
+       expect(current_path).to eq "/photos/#{photo.id}"
+    end
+  end
 end
